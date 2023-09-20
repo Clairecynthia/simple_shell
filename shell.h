@@ -107,12 +107,12 @@ typedef struct passinfo
 typedef struct custom
 {
 	char *type;
-	int (*func)(info_t *);
+	int (*func)(params_t *);
 } custom_table;
 
 
 /* ourhsh.c */
-int hsh(params_t *, char **);
+int ourhsh(params_t *, char **);
 int find_custom(params_t *);
 void find_command(params_t *);
 
