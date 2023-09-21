@@ -7,7 +7,7 @@
  *
  * Return: 1 if the file is executable, 0 otherwise.
  */
-	int is_command(char *path, param_t *params)
+	int is_command(char *path, params_t *params)
 	{
 	struct stat st;
 
@@ -51,7 +51,7 @@
  *
  * Return: Full path of the command if found, or NULL.
  */
-	char *locate_path(char *pathstr, char *cmd, param_t *params)
+	char *locate_path(char *pathstr, char *cmd, params_t *params)
 	{
 	int p = 0, curr_pla = 0;
 	char *path;
