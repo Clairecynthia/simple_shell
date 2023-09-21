@@ -66,9 +66,14 @@
 	return (NULL);
 
 	unsigned int copy_size = (old_size < new_size) ? old_size : new_size;
-	for (unsigned int i = 0; i < copy_size; i++)
+	unsigned int i = 0;
+	
+	while (i < copy_size)
+	{
 
 	new_ptr[i] = ((char *)ptr)[i];
+	i++;
+	}
 
 	free(ptr);
 	return (new_ptr);
