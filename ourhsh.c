@@ -33,7 +33,7 @@
 	write_history(params);
 	free_params(params, 1);
 	if (!interactive(params) && status)
-	exit(status)
+	exit(status);
 	if (custom_ret == -2)
 	{
 	if (err_num == -1)
@@ -74,7 +74,6 @@
 	custom_ret = customtbl[p].func(params);
 	break;
 	}
-	}
 	return (custom_ret);
 	}
 
@@ -101,7 +100,7 @@
 	if (!m)
 	return;
 
-	path = find_path(params, _getenv(params, "PATH="), argv[0]);
+	path = locate_path(params, _getenv(params, "PATH="), argv[0]);
 	if (path)
 	{
 	path = path;
@@ -110,12 +109,14 @@
 	else
 	{
 	if ((interactive(params) || _getenv(params, "PATH=")
-	|| argv[0][0] == '/') && is_cmd(params, argv[0]))
+	|| argv[0][0] == '/') && is_command(params, argv[0]))
 	fork_command(params);
 	else if (*(arg) != '\n')
 	{
+	int status
 	status = 127;
-	print_error(params, "not found\n");
+	print_error(params, "command not found\n");
 	}
 
+	}
 	}
