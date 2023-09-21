@@ -112,7 +112,7 @@ typedef struct custom
 
 
 /* ourhsh.c */
-int ourhsh(params_t *, char **);
+int ourhsh(char **, params_t *,);
 int find_custom(params_t *);
 void find_command(params_t *);
 
@@ -120,7 +120,7 @@ void find_command(params_t *);
 void fork_command(params_t *);
 
 /* find_path.c */
-int is_command(params_t_t *, char *);
+int is_command(params_t *, char *);
 char *dup_chars(char *, int, int);
 char *locate_path(params_t *, char *, char *);
 
