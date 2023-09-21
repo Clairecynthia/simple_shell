@@ -154,13 +154,11 @@ char *_strchr(char *, char);
 char **strtow(char *, char *);
 char **strtow2(char *, char);
 
-/* memory_functions */
+/* storage_allocation.c */
 char *_memset(char *, char, unsigned int);
-void ffree(char **);
-void *_realloc(void *, unsigned int, unsigned int);
-
-/* memory_functions2.c */
-int bfree(void **);
+void release_string_array(char **);
+void *custom_realloc(void *, unsigned int, unsigned int);
+int free_and_null(void **);
 
 /* more_functions.c */
 int interactive(info_t *);
