@@ -184,9 +184,9 @@ int unset_alias(char *, params_t, params);
 int set_alias(char *, params_t, params);
 int _myalias(params_t *);
 
-/* getline.c module */
-ssize_t get_input(info_t *);
-int _getline(info_t *, char **, size_t *);
+/* my_getline.c */
+ssize_t get_input(params_t *);
+int _getline(char **, size_t *, params_t *);
 void sigintHandler(int);
 
 /* info.c module */
