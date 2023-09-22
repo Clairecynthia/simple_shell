@@ -133,10 +133,10 @@ int _eputchar(char);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
-/* string_functions.c */
+/* shell_string.c */
 int _strlen(char *);
 int _strcmp(char *, char *);
-char *starts_with(const char *, const char *);
+char *begin_with(const char *, const char *);
 char *_strcat(char *, char *);
 
 /* string_functions2.c */
@@ -186,6 +186,8 @@ int _myalias(params_t *);
 
 /* my_getline.c */
 ssize_t get_input(params_t *);
+ssize_t read_buf(char *, size_t *, params_t *params);
+ssize_t input_buf(char **, size_t *, params_t *params);
 int _getline(char **, size_t *, params_t *);
 void sigintHandler(int);
 
