@@ -112,7 +112,7 @@ typedef struct custom
 
 
 /* ourhsh.c */
-int ourhsh(char **, params_t *,);
+int ourhsh(char **, params_t *);
 int find_custom(params_t *);
 void find_command(params_t *);
 
@@ -120,9 +120,9 @@ void find_command(params_t *);
 void fork_command(params_t *);
 
 /* find_path.c */
-int is_command(params_t *, char *);
+int is_command(char *, params_t *);
 char *dup_chars(char *, int, int);
-char *locate_path(params_t *, char *, char *);
+char *locate_path(char *, char *, params_t *);
 
 /* loophsh.c */
 int loophsh(char **);
@@ -173,14 +173,16 @@ int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
-/* builtin_emulators.c */
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+/* builtin_command.c */
+int _isexit(params_t *);
+int _iscd(params_t *);
+int _ishelp(params_t *);
 
-/* builtin_emulators2.c */
-int _myhistory(info_t *);
-int _myalias(info_t *);
+/* alias.c */
+int _myhistory(params_t *);
+int unset_alias(char *, params_t, params);
+int set_alias(char *, params_t, params);
+int _myalias(params_t *);
 
 /* getline.c module */
 ssize_t get_input(info_t *);
