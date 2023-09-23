@@ -37,8 +37,8 @@
 	if (custom_ret == -2)
 	{
 	if (params->err_num == -1)
-	exit(status);
-	exit(err_num);
+	exit(params->status);
+	exit(1);
 	}
 	return (custom_ret);
 	}
@@ -70,7 +70,7 @@
 	for (p = 0; customtbl[p].type; p++)
 	if (_strcmp(params->argv[0], customtbl[p].type) == 0)
 	{
-	param->line_count++;
+	params->line_count++;
 	custom_ret = customtbl[p].func(params);
 	break;
 	}
@@ -88,14 +88,14 @@
 	char *path = NULL;
 	int p, m;
 
-	path = params->argv[0];
+	params->path = params->argv[0];
 	if (params->linecount_flag == 1)
 	{
 	params->line_count++;
-	linecount_flag = 0;
+	params->linecount_flag = 0;
 	}
 	for (p = 0, m = 0; params->arg[p]; p++)
-	if (!is_delim(arg[p], " \t\n"))
+	if (!is_delim(params->arg[p], " \t\n"))
 	m++;
 	if (!m)
 	return;
@@ -109,12 +109,12 @@
 	else
 	{
 	if ((interactive(params) || _getenv(params, "PATH=")
-	|| argv[0][0] == '/') && is_command(params, argv[0]))
+	|| params->argv[0][0] == '/') && is_command(params, argv[0]))
 	fork_command(params);
 	else if (*(arg) != '\n')
 	{
 	params->status = 127;
-	perror(params, "command not found\n");
+	perror("command not found\n");
 	}
 
 	}
