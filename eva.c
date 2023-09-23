@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _myenv - prints the envi that is currently esxisting
+ * _isenv - prints the envi that is currently esxisting
  * @params: The structure which carries argument. maintain
  *           prototype constant.
  * Return: 0 Always.
  */
-int _myenv(params_t *params)
+int _isenv(params_t *params)
 {
 	print_list_str(params->env);
 	return (0);
@@ -35,13 +35,13 @@ char *_getenv(params_t *params, const char *name)
 }
 
 /**
- * _mysetenv -create another envi variable,
+ * _issetenv -create another envi variable,
  *             or edit an already existing variable
  * @params: Structure carries arguments.  maintain
  *          prototype to constant
  *  Return: 0 Always.
  */
-int _mysetenv(params_t *params)
+int _issetenv(params_t *params)
 {
 	if (params->argc != 3)
 	{
@@ -54,12 +54,12 @@ int _mysetenv(params_t *params)
 }
 
 /**
- * _myunsetenv - Remove a variable envi
+ * _isunsetenv - Remove a variable envi
  * @params: Structure carries argument. maintain
  *      prototype func
  *  Return: Always 0
  */
-int _myunsetenv(params_t *params)
+int _isunsetenv(params_t *params)
 {
 	int a;
 
