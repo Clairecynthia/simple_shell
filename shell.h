@@ -61,11 +61,11 @@ typedef struct liststr
  *@err_num: the error code for exit()s
  *@linecount_flag: if on count this line of input
  *@fname: the program filename
- *@env: linked list local copy of environ
- *@environ: custom modified copy of environ from LL env
+ *@eva: linked list local copy of environ
+ *@eva: custom modified copy of eva from LL env
  *@history: the history node
  *@alias: the alias node
- *@env_changed: on if environ was changed
+ *@eva_changed: on if environ was changed
  *@status: the return status of the last exec'd command
  *@cmd_buf: address of pointer to cmd_buf, on if chaining
  *@cmd_buf_type: CMD_type ||, &&, ;
@@ -127,7 +127,7 @@ char *locate_path(char *, char *, params_t *);
 /* loophsh.c */
 int loophsh(char **);
 
-/* err_string_functions.c */
+/* e_string_func.c */
 void _eputs(char *);
 int _eputchar(char);
 int _putfd(char c, int fd);
@@ -160,20 +160,7 @@ void release_string_array(char **);
 void *custom_realloc(void *, unsigned int, unsigned int);
 int free_and_null(void **);
 
-/* more_functions.c */
-int interactive(params_t *);
-int is_delim(char, char *);
-int _isalpha(int);
-int _atoi(char *);
 
-/* more_functions2.c */
-int _erratoi(char *);
-void print_error(params_t *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
-
-<<<<<<< HEAD
 /* builtin_emulators.c */
 int _myexit(params_t *);
 int _mycd(params_t *);
@@ -188,25 +175,19 @@ ssize_t get_input(params_t *);
 int _getline(params_t *, char **, size_t *);
 void sigintHandler(int);
 
-/* info.c module */
-void clear_params(params_t *);
-void set_params(params_t *, char **);
-void free_params(params_t *, int);
-
-/* eva.c module */
+/* eva.c  */
 char *_geteva(params_t *, const char *);
-int _myenv(params_t *);
-int _mysetenv(params_t *);
-int _myunsetenv(params_t *);
-int populate_env_list(params_t *);
+int _myeva(params_t *);
+int _myseteva(params_t *);
+int _myunseteva(params_t *);
+int populate_eva_list(params_t *params);
 
-/* eva2.c module */
-char **get_eva2(params_t *);
-int _unsetenv(params_t *, char *);
-int _setenv(params_t *, char *, char *);
+/* eva2.c */
+char **get_eva2(params_t *params);
+int _unseteva(params_t *, char *);
+int _seteva(params_t *, char *, char *);
 
-/* io-func.c */
-=======
+
 /* builtin_command.c */
 int _isexit(params_t *);
 int _iscd(params_t *);
@@ -225,44 +206,13 @@ ssize_t input_buf(char **, size_t *, params_t *);
 int _getline(char **, size_t *, params_t *);
 void sigintHandler(int);
 
-/* info.c module */
-void clear_info(info_t *);
-void set_info(info_t *, char **);
-void free_info(info_t *, int);
-
-/* eva.c */
-char *_getenv(params_t *, const char *);
-int _isenv(params_t *);
-int _issetenv(params_t *);
-int _isunsetenv(params_t *);
-int populate_env_list(params_t *);
-
-/* eva.c */
-char **get_environ(info_t *);
-int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *);
-
 /* io-params.c */
->>>>>>> 2af059c6f65fb332203d2a37c4d15257319dce13
 char *get_history_file(params_t *params);
 int write_history(params_t *params);
 int read_history(params_t *params);
 int build_history_list(params_t *params, char *buf, int linecount);
 int renumber_history(params_t *params);
 
-/* liststr.c module */
-list_t *add_node(list_t **, const char *, int);
-list_t *add_node_end(list_t **, const char *, int);
-size_t print_list_str(const list_t *);
-int delete_node_at_index(list_t **, unsigned int);
-void free_list(list_t **);
-
-/* liststr2.c module */
-size_t list_len(const list_t *);
-char **list_to_strings(list_t *);
-size_t print_list(const list_t *);
-list_t *node_starts_with(list_t *, char *, char);
-ssize_t get_node_index(list_t *, list_t *);
 
 /* nan.c */
 int is_nan(params_t *, char *, size_t *);

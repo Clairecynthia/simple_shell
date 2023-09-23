@@ -23,8 +23,8 @@
  * Return: Returns 0 on success, 1 on error.
  */
 
-	int unset_alias(char *str, params_t *params)
-	{
+int unset_alias(char *str, params_t *)
+{
 	char *s, l;
 	int ret;
 
@@ -58,7 +58,7 @@
 	return (unset_alias(params, str));
 
 	unset_alias(params, str);
-	return (add_node_end(&(alias), str, 0) == NULL);
+	return (add_node_end(&(_isalias), str, 0) == NULL);
 	}
 
 /**

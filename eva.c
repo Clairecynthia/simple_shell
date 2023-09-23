@@ -1,27 +1,27 @@
 #include "shell.h"
 
 /**
- * _isenv - prints the envi that is currently esxisting
+ * _iseva - prints the eva that is currently esxisting
  * @params: The structure which carries argument. maintain
  *           prototype constant.
  * Return: 0 Always.
  */
-int _isenv(params_t *params)
+int _iseva(params_t *params)
 {
-	print_list_str(params->env);
+	print_list_str(params->eva);
 	return (0);
 }
 
 /**
- * _getenv - gets value to a variable envi
+ * _geteva - gets value to a variable eva
  * @params: The structure which carries argument. maintain
  * @name: name of variable environment
  *
  * Return: value
  */
-char *_getenv(params_t *params, const char *name)
+char *_geteva(params_t *params, const char *name)
 {
-	list_t *node = params->env;
+	list_t *node = params->eva;
 	char *b;
 
 	while (node)
@@ -35,20 +35,20 @@ char *_getenv(params_t *params, const char *name)
 }
 
 /**
- * _issetenv -create another envi variable,
+ * _isseteva -create another eva variable,
  *             or edit an already existing variable
  * @params: Structure carries arguments.  maintain
  *          prototype to constant
  *  Return: 0 Always.
  */
-int _issetenv(params_t *params)
+int _isseteva(params_t *params)
 {
 	if (params->argc != 3)
 	{
 		_eputs("Incorrect numb of arguements\n");
 		return (1);
 	}
-	if (_setenv(params, params->argv[1], params->argv[2]))
+	if (_seteva(params, params->argv[1], params->argv[2]))
 		return (0);
 	return (1);
 }
@@ -59,7 +59,7 @@ int _issetenv(params_t *params)
  *      prototype func
  *  Return: Always 0
  */
-int _isunsetenv(params_t *params)
+int _isunsetenvi(params_t *params)
 {
 	int a;
 
@@ -69,23 +69,23 @@ int _isunsetenv(params_t *params)
 		return (1);
 	}
 	for (a = 1; a <= info->argc; a++)
-		_unsetenv(params, params->argv[a]);
+		_unseteva(params, params->argv[a]);
 
 	return (0);
 }
 
 /**
- * populate_env_list - populates env linked list
+ * populate_env_list - populates eva linked list
  * @params: Structure carries arguments. maintain
  *           prototype func.
  * Return: Always 0
  */
-int populate_env_list(params_t *params)
+int populate_environ_list(params_t *params)
 {
 	list_t *node = NULL;
 	size_t a;
 
-	for (a = 0; environ[a]; a++)
+	for (a = 0; eva[a]; a++)
 		add_node_end(&node, environ[a], 0);
 	params->env = node;
 	return (0);

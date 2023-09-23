@@ -25,7 +25,7 @@ void custom_eputs(char *str)
  *
  * Return: Nothing
  */
-void print_string(char *str);
+void print_string(char *str)
 {
 	static int a;
 	static char buf[WRITE_BUF_SIZE];
@@ -48,7 +48,7 @@ void print_string(char *str);
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int write_to_fd(char c, int fd);
+int write_to_fd(char c, int fd)
 {
 	static int a;
 	static char buf[WRITE_BUF_SIZE];
@@ -78,7 +78,7 @@ int _putsfd(char *string, int file_descriptor)
 		return (0);
 	while (*string)
 	{
-		character_count += _write_to_fd(*string++, file_descriptor);
+		character_count += write_to_fd(*string++, file_descriptor);
 	}
 	return (character_count);
 }
