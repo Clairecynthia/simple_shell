@@ -22,7 +22,7 @@
 #if USE_GETLINE
 	bytesRead = getline(buffer, &length_p, stdin);
 #else
-	bytesRead = _getline(params, buffer, &length_p);
+	bytesRead = getline(params, buffer, &length_p);
 #endif
 	if (bytesRead > 0)
 	{
@@ -31,7 +31,7 @@
 	(*buffer)[bytesRead - 1] = '\0';
 	bytesRead--;
 	}
-	linecount_flag = 1;
+	params->linecount_flag = 1;
 	remove_comments(*buffer);
 	build_history_list(params, *buffer, params->histcount++);
 	{
