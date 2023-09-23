@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _myhistory - Displays the command history list, printing each command
+ * _ishistory - Displays the command history list, printing each command
  *              on a separate line with line numbers starting from 0.
  * @params: Pointer to a structure containing potential arguments.
  *          This is used to maintain a consistent function prototype.
@@ -9,7 +9,7 @@
  * Return: Always returns 0.
  */
 
-	int _myhistory(params_t *params)
+	int _ishistory(params_t *params)
 	{
 	print_list(params->history);
 	return (0);
