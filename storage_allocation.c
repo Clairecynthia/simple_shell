@@ -47,6 +47,7 @@
 	void *custom_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	{
 	char *new_ptr;
+	unsigned int i = 0;
 
 	if (!ptr)
 	return (malloc(new_size));
@@ -65,10 +66,9 @@
 	if (!new_ptr)
 	return (NULL);
 
-	unsigned int copy_size = (old_size < new_size) ? old_size : new_size;
-	unsigned int i = 0;
+	old_size = (old_size < new_size) ? old_size : new_size;
 	
-	while (i < copy_size)
+	while (i < old_size)
 	{
 
 	new_ptr[i] = ((char *)ptr)[i];
