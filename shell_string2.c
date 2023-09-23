@@ -16,8 +16,8 @@
 	return (dest);
 	while (src[p])
 	{
-	dest[p] = src[i];
-	i++;
+	dest[p] = src[p];
+	p++;
 	}
 	dest[p] = '\0';
 	return (dest);
@@ -32,18 +32,18 @@
 
 char *_strdup(const char *str)
 {
-	int leng = 0;
+	int length = 0;
 	char *ret;
 
 	if (str == NULL)
 	return (NULL);
 	while (*str++)
-	len++;
-	ret = malloc(sizeof(char) * (len + 1));
+	length++;
+	ret = malloc(sizeof(char) * (length + 1));
 	if (!ret)
 	return (NULL);
-	for (len++; length--;)
-	ret[len] = *--str;
+	for (length++; length--;)
+	ret[length] = *--str;
 	return (ret);
 }
 
