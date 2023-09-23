@@ -112,7 +112,7 @@ typedef struct custom
 
 
 /* ourhsh.c */
-int ourhsh(params_t *, char **);
+int ourhsh(char **, params_t *);
 int find_custom(params_t *);
 void find_command(params_t *);
 
@@ -120,9 +120,9 @@ void find_command(params_t *);
 void fork_command(params_t *);
 
 /* find_path.c */
-int is_command(params_t_t *, char *);
+int is_command(char *, params_t *);
 char *dup_chars(char *, int, int);
-char *locate_path(params_t *, char *, char *);
+char *locate_path(char *, char *, params_t *);
 
 /* loophsh.c */
 int loophsh(char **);
@@ -133,24 +133,24 @@ int _eputchar(char);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
-/* string_functions.c */
+/* shell_string.c */
 int _strlen(char *);
 int _strcmp(char *, char *);
-char *starts_with(const char *, const char *);
+char *begin_with(const char *, const char *);
 char *_strcat(char *, char *);
 
-/* string_functions2.c */
+/* shell_string2.c */
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
 void _puts(char *);
 int _putchar(char);
 
-/* string_functions3.c */
+/* shell_string3.c */
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
 
-/* string_functions4.c */
+/* shell_string4.c */
 char **strtow(char *, char *);
 char **strtow2(char *, char);
 
@@ -173,6 +173,7 @@ int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
+<<<<<<< HEAD
 /* builtin_emulators.c */
 int _myexit(params_t *);
 int _mycd(params_t *);
@@ -205,6 +206,44 @@ int _unsetenv(params_t *, char *);
 int _setenv(params_t *, char *, char *);
 
 /* io-func.c */
+=======
+/* builtin_command.c */
+int _isexit(params_t *);
+int _iscd(params_t *);
+int _ishelp(params_t *);
+
+/* alias.c */
+int _ishistory(params_t *);
+int unset_alias(char *, params_t *);
+int set_alias(char *, params_t *);
+int _isalias(params_t *);
+
+/* my_getline.c */
+ssize_t get_input(params_t *);
+ssize_t read_buf(char *, size_t *, params_t *);
+ssize_t input_buf(char **, size_t *, params_t *);
+int _getline(char **, size_t *, params_t *);
+void sigintHandler(int);
+
+/* info.c module */
+void clear_info(info_t *);
+void set_info(info_t *, char **);
+void free_info(info_t *, int);
+
+/* eva.c */
+char *_getenv(params_t *, const char *);
+int _isenv(params_t *);
+int _issetenv(params_t *);
+int _isunsetenv(params_t *);
+int populate_env_list(params_t *);
+
+/* eva.c */
+char **get_environ(info_t *);
+int _unsetenv(info_t *, char *);
+int _setenv(info_t *, char *, char *);
+
+/* io-params.c */
+>>>>>>> 2af059c6f65fb332203d2a37c4d15257319dce13
 char *get_history_file(params_t *params);
 int write_history(params_t *params);
 int read_history(params_t *params);

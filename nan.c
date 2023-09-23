@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- * is_chain - test current char in buffer delimeter
+ * is_nan - test current char in buffer delimeter
  * @params: struct the parameter
  * @buf: char the buffer
  * @p: area of position in buf
  *
  * Return: if chain delimeter is 1, otherwise 0
  */
-int is_chain(params_t *params, char *buf, size_t *p)
+int is_nan(params_t *params, char *buf, size_t *p)
 {
 	size_t k = *b;
 
@@ -22,7 +22,7 @@ int is_chain(params_t *params, char *buf, size_t *p)
 	{
 		buf[k] = 0;
 		k++;
-		info->cmd_buf_type = CMD_AND;
+		params->cmd_buf_type = CMD_AND;
 	}
 	else if (buf[k] == ';') /* found end of this command */
 	{
@@ -36,7 +36,7 @@ int is_chain(params_t *params, char *buf, size_t *p)
 }
 
 /**
- * check_chain - check and continue to chain base on status
+ * check_nan - check and continue to nan base on status
  * @params: struct the parameter
  * @buf: char the buffer
  * @b: area of buf position
@@ -45,7 +45,7 @@ int is_chain(params_t *params, char *buf, size_t *p)
  *
  * Return: Void
  */
-void check_chain(params_t *params, char *buf, size_t *b, size_t a, size_t len)
+void check_nan(params_t *params, char *buf, size_t *b, size_t a, size_t len)
 {
 	size_t k = *b;
 
@@ -114,7 +114,7 @@ int replace_vars(params_t *params)
 		if (params->argv[a][0] != '$' || !params->argv[a][1])
 			continue;
 
-		if (!_strcmp(info->argv[a], "$?"))
+		if (!_strcmp(params->argv[a], "$?"))
 		{
 			replace_string((&params->argv[a]),
 				_strdup(convert_number(params->status, 10, 0)));
@@ -122,18 +122,18 @@ int replace_vars(params_t *params)
 		}
 		if (!_strcmp(params->argv[a], "$$"))
 		{
-			replace_string(&(info->argv[a]),
+			replace_string(&(params->argv[a]),
 				_strdup(convert_number(getpid(), 10, 0)));
 			continue;
 		}
-		node = node_starts_with(info->env, &params->argv[a][1], '=');
+		node = node_starts_with(params->env, &params->argv[a][1], '=');
 		if (node)
 		{
 			replace_string(&(params->argv[a]),
 				_strdup(_strchr(node->str, '=') + 1));
 			continue;
 		}
-		replace_string(&params->argv[i], _strdup(""));
+		replace_string(&params->argv[a], _strdup(""));
 
 	}
 	return (0);

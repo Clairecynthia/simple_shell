@@ -6,7 +6,7 @@
  *
  * Return: This function does not return a value (void).
  */
-	void fork_command(params_t, *params)
+	void fork_command(params_t, params)
 	{
 	pid_t child_pid;
 
