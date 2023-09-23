@@ -161,55 +161,55 @@ void *custom_realloc(void *, unsigned int, unsigned int);
 int free_and_null(void **);
 
 /* more_functions.c */
-int interactive(info_t *);
+int interactive(params_t *);
 int is_delim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
 /* more_functions2.c */
 int _erratoi(char *);
-void print_error(info_t *, char *);
+void print_error(params_t *, char *);
 int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
 /* builtin_emulators.c */
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+int _myexit(params_t *);
+int _mycd(params_t *);
+int _myhelp(params_t *);
 
 /* builtin_emulators2.c */
-int _myhistory(info_t *);
-int _myalias(info_t *);
+int _myhistory(params_t *);
+int _myalias(params_t *);
 
 /* getline.c module */
-ssize_t get_input(info_t *);
-int _getline(info_t *, char **, size_t *);
+ssize_t get_input(params_t *);
+int _getline(params_t *, char **, size_t *);
 void sigintHandler(int);
 
 /* info.c module */
-void clear_info(info_t *);
-void set_info(info_t *, char **);
-void free_info(info_t *, int);
+void clear_params(params_t *);
+void set_params(params_t *, char **);
+void free_params(params_t *, int);
 
-/* env.c module */
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+/* eva.c module */
+char *_geteva(params_t *, const char *);
+int _myenv(params_t *);
+int _mysetenv(params_t *);
+int _myunsetenv(params_t *);
+int populate_env_list(params_t *);
 
-/* env2.c module */
-char **get_environ(info_t *);
-int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *);
+/* eva2.c module */
+char **get_eva2(params_t *);
+int _unsetenv(params_t *, char *);
+int _setenv(params_t *, char *, char *);
 
-/* file_io_functions.c */
-char *get_history_file(info_t *info);
-int write_history(info_t *info);
-int read_history(info_t *info);
-int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
+/* io-func.c */
+char *get_history_file(params_t *params);
+int write_history(params_t *params);
+int read_history(params_t *params);
+int build_history_list(params_t *params, char *buf, int linecount);
+int renumber_history(params_t *params);
 
 /* liststr.c module */
 list_t *add_node(list_t **, const char *, int);
@@ -225,11 +225,11 @@ size_t print_list(const list_t *);
 list_t *node_starts_with(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
 
-/* chain.c */
-int is_chain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
-int replace_vars(info_t *);
+/* nan.c */
+int is_nan(params_t *, char *, size_t *);
+void check_chain(params_t *, char *, size_t *, size_t, size_t);
+int replace_alias(params_t *);
+int replace_vars(params_t *);
 int replace_string(char **, char *);
 
 #endif
