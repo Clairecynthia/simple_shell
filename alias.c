@@ -86,13 +86,13 @@
 	}
 
 /**
- * _myalias - Mimics the alias built-in command.
+ * _isalias - Mimics the alias built-in command.
  * @params: Pointer to the parameter struct.
  *
  * Return: Always returns 0.
  */
 
-	int _myalias(params_t *params)
+	int _isalias(params_t *params)
 	{
 	int p = 0;
 	char *s = NULL;
