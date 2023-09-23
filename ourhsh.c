@@ -32,11 +32,11 @@
 	}
 	write_history(params);
 	free_params(params, 1);
-	if (!interactive(params) && status)
+	if (!interactive(params) && params->status)
 	exit(status);
 	if (custom_ret == -2)
 	{
-	if (err_num == -1)
+	if (params->err_num == -1)
 	exit(status);
 	exit(err_num);
 	}
@@ -56,21 +56,21 @@
 	{
 	int p, custom_ret = -1;
 	custom_table customtbl[] = {
-	{"exit", _myexit},
-	{"env", _myenv},
-	{"help", _myhelp},
-	{"history", _myhistory},
-	{"setenv", _mysetenv},
-	{"unsetenv", _myunsetenv},
-	{"cd", _mycd},
-	{"alias", _myalias},
+	{"exit", _isexit},
+	{"env", _isenv},
+	{"help", _ishelp},
+	{"history", _ishistory},
+	{"setenv", _issetenv},
+	{"unsetenv", _isunsetenv},
+	{"cd", _iscd},
+	{"alias", _isalias},
 	{NULL, NULL}
 	};
 
 	for (p = 0; customtbl[p].type; p++)
-	if (_strcmp(argv[0], customtbl[p].type) == 0)
+	if (_strcmp(params->argv[0], customtbl[p].type) == 0)
 	{
-	line_count++;
+	param->line_count++;
 	custom_ret = customtbl[p].func(params);
 	break;
 	}
@@ -88,19 +88,19 @@
 	char *path = NULL;
 	int p, m;
 
-	path = argv[0];
-	if (linecount_flag == 1)
+	path = params->argv[0];
+	if (params->linecount_flag == 1)
 	{
-	line_count++;
+	params->line_count++;
 	linecount_flag = 0;
 	}
-	for (p = 0, m = 0; arg[p]; p++)
+	for (p = 0, m = 0; params->arg[p]; p++)
 	if (!is_delim(arg[p], " \t\n"))
 	m++;
 	if (!m)
 	return;
 
-	path = locate_path(params, _getenv(params, "PATH="), argv[0]);
+	path = locate_path(params, _getenv(params, "PATH="), params->argv[0]);
 	if (path)
 	{
 	path = path;
@@ -113,9 +113,8 @@
 	fork_command(params);
 	else if (*(arg) != '\n')
 	{
-	int status
-	status = 127;
-	print_error(params, "command not found\n");
+	params->status = 127;
+	perror(params, "command not found\n");
 	}
 
 	}
