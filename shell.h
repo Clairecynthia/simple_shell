@@ -139,18 +139,18 @@ int _strcmp(char *, char *);
 char *begin_with(const char *, const char *);
 char *_strcat(char *, char *);
 
-/* string_functions2.c */
+/* shell_string2.c */
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
 void _puts(char *);
 int _putchar(char);
 
-/* string_functions3.c */
+/* shell_string3.c */
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
 
-/* string_functions4.c */
+/* shell_string4.c */
 char **strtow(char *, char *);
 char **strtow2(char *, char);
 
@@ -180,14 +180,14 @@ int _ishelp(params_t *);
 
 /* alias.c */
 int _myhistory(params_t *);
-int unset_alias(char *, params_t, params);
-int set_alias(char *, params_t, params);
+int unset_alias(char *, params_t *);
+int set_alias(char *, params_t *);
 int _myalias(params_t *);
 
 /* my_getline.c */
 ssize_t get_input(params_t *);
-ssize_t read_buf(char *, size_t *, params_t *params);
-ssize_t input_buf(char **, size_t *, params_t *params);
+ssize_t read_buf(char *, size_t *, params_t *);
+ssize_t input_buf(char **, size_t *, params_t *);
 int _getline(char **, size_t *, params_t *);
 void sigintHandler(int);
 
