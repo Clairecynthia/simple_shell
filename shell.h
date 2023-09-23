@@ -179,10 +179,10 @@ int _iscd(params_t *);
 int _ishelp(params_t *);
 
 /* alias.c */
-int _myhistory(params_t *);
+int _ishistory(params_t *);
 int unset_alias(char *, params_t *);
 int set_alias(char *, params_t *);
-int _myalias(params_t *);
+int _isalias(params_t *);
 
 /* my_getline.c */
 ssize_t get_input(params_t *);
@@ -196,14 +196,14 @@ void clear_info(info_t *);
 void set_info(info_t *, char **);
 void free_info(info_t *, int);
 
-/* env.c module */
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+/* eva.c */
+char *_getenv(params_t *, const char *);
+int _isenv(params_t *);
+int _issetenv(params_t *);
+int _isunsetenv(params_t *);
+int populate_env_list(params_t *);
 
-/* env2.c module */
+/* eva.c */
 char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
