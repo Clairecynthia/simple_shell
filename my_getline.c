@@ -33,10 +33,10 @@
 	}
 	linecount_flag = 1;
 	remove_comments(*buffer);
-	build_history_list(params, *buffer, histcount++);
+	build_history_list(params, *buffer, params->histcount++);
 	{
 	*length = bytesRead;
-	cmd_buf = buffer;
+	params->cmd_buf = buffer;
 	}
 	}
 	}
@@ -54,10 +54,10 @@
 	static char *buffer;
 	static size_t p, r, length;
 	ssize_t bytesRead = 0;
-	char **buf_p = &(arg), *s;
+	char **buf_p = &(params->arg), *s;
 
 	_putchar(BUF_FLUSH);
-	bytesRead = input_buffer(params, &buffer, &length);
+	bytesRead = input_buf(params, &buffer, &length);
 	if (bytesRead == -1)
 	return (-1);
 	if (length)
@@ -74,17 +74,17 @@
 	}
 
 	p = r + 1;
-	if (p > = length)
+	if (p >= length)
 	{
 	p = length = 0;
-	cmd_buf_type = CMD_NORM;
+	params->cmd_buf_type = CMD_NORM;
 	}
 
 	*buf_p = s;
 	return (_strlen(s));
 	}
 
-	*buf_p = buf;
+	*buf_p = buffer;
 	return (bytesRead);
 }
 
@@ -103,8 +103,8 @@ ssize_t read_buf(char *buffer, size_t *p, params_t *params)
 
 	if (*p)
 	return (0);
-	bytesRead = read(readfd, buffer, READ_BUF_SIZE);
-	if (bytesRead > = 0)
+	bytesRead = read(params->readfd, buffer, READ_BUF_SIZE);
+	if (bytesRead >= 0)
 	*p = bytesRead;
 	return (bytesRead);
 }
@@ -121,7 +121,7 @@ ssize_t read_buf(char *buffer, size_t *p, params_t *params)
 	int _getline(char **ptr, size_t *length, params_t *params)
 	{
 	static char buffer[READ_BUF_SIZE];
-	static size_t p, length;
+	static size_t p, len;
 	size_t m;
 	ssize_t bytesRead = 0, l = 0;
 	char *s = NULL, *new_p = NULL, *i;
@@ -132,7 +132,7 @@ ssize_t read_buf(char *buffer, size_t *p, params_t *params)
 	if (p == len)
 	p = len = 0;
 
-	bytesRead = read_buffer(params, buffer, &len);
+	bytesRead = read_buf(params, buffer, &len);
 	if (bytesRead == -1 || (bytesRead == 0 && len == 0))
 	return (-1);
 
@@ -147,7 +147,7 @@ ssize_t read_buf(char *buffer, size_t *p, params_t *params)
 	else
 	_strncpy(new_p, buffer + p, m - p + 1);
 
-	l += m - i;
+	l += m - p;
 	p = m;
 	s = new_p;
 
@@ -168,3 +168,4 @@ void sigintHandler(__attribute__((unused))int sig_num)
 	_puts("\n");
 	_puts("$ ");
 	_putchar(BUF_FLUSH);
+}
