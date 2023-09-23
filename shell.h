@@ -208,12 +208,12 @@ char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
-/* file_io_functions.c */
-char *get_history_file(info_t *info);
-int write_history(info_t *info);
-int read_history(info_t *info);
-int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
+/* io-params.c */
+char *get_history_file(params_t *params);
+int write_history(params_t *params);
+int read_history(params_t *params);
+int build_history_list(params_t *params, char *buf, int linecount);
+int renumber_history(params_t *params);
 
 /* liststr.c module */
 list_t *add_node(list_t **, const char *, int);
